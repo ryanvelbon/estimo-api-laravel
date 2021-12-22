@@ -2,6 +2,9 @@
 
 This is a Laravel-powered API for the Estimo app.
 
+# Deploying on cPanel
+
+
 # Consuming the API
 
 Some requests need to include the header `Accept:application/json`.

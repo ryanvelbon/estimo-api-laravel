@@ -23,7 +23,8 @@ class AuthTest extends TestCase
     public function test_registration()
     {
         $data = [
-            'username' => 'john99',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
             'email' => 'johndoe@x.com',
             'password' => '12345678',
             'password_confirmation' => '12345678'
