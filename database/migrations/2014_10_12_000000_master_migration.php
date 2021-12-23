@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\Project;
+use App\Models\ProjectMember;
+
 class MasterMigration extends Migration
 {
     public function up()
@@ -24,17 +27,14 @@ class MasterMigration extends Migration
             $table->id();
             $table->string('title', 200);
             $table->string('description', 1000);
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(Project::STATUS_OPEN);
             $table->unsignedBigInteger('created_by');
-            // manager_id
-            // type
-            // projected_timeline
-            // planned_start_date
-            // planned_end_date
+            $table->unsignedBigInteger('managed_by');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('managed_by')->references('id')->on('users');
         });
 
 
@@ -60,11 +60,11 @@ class MasterMigration extends Migration
             // $table->id();
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('user_id');
-            $table->tinyInteger('role');
+            $table->tinyInteger('role')->default(ProjectMember::ROLE_READ);
             $table->timestamps();
 
-            $table->foreign('project_id')->references('id')->on('projects');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('CASCADE');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
         });
 
 
