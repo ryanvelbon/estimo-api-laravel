@@ -281,6 +281,49 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "retrieve current user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
@@ -288,7 +331,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "1|5WX7ItguiOD9TEhPQD5lsTMKOMGahgS23zETknFe",
+				"value": "1|YVN05DBiTQHIJJuDV0lL7nRi3u6EqUj3HLQyFEZL",
 				"type": "string"
 			}
 		]

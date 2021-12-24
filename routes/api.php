@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
 
 
@@ -16,6 +17,10 @@ use App\Http\Controllers\ProjectController;
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+
+// `/users/me` conflicts with `/users/{id}` and thus needs to be defined before it
+Route::middleware('auth:sanctum')->get('/users/me', [UserController::class, 'me']);
+Route::get('/users/{id}', [UserController::class, 'show']);
 
 /*
 | Protected Routes
@@ -39,13 +44,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 /*
 | Test Routes
 |--------------------------------------------------------------------------
-| Here is where you can register routes which are not part 
-|
+| Here is where you can register routes which are not part of the final API
+| design but just for testing.
 */
 Route::get('/some-public-route', function (Request $request) {return "Apple!";});
 Route::middleware('auth:sanctum')->get('/some-protected-route', function (Request $request) {return "Orange!";});
-
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
