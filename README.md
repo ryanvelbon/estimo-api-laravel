@@ -1,3 +1,16 @@
+# next commit
+
+Eloquent relationships
+
+Task resource
+
+Factory and Seeder
+
+Counts for TableSeeders are now defined in `config/seeding.php`
+
+RBAC
+
+
 # About
 
 This is a Laravel-powered API for the Estimo app.
@@ -13,6 +26,11 @@ While we are trying to find a better CI/CD solution, you can follow the instruct
 * Run `$ php artisan key:generate`
 * Run `$ php artisan migrate`
 
+## Bring repo up to date
+
+* Run `$ git pull`
+* Drop all tables (or drop database, recreate it and regrant user permission using same password)
+* Run `$ php artisan migrate`
 
 # Testing
 
@@ -48,7 +66,7 @@ This is where I keep track of the hours expended on this project.
 
 December
 21  22  23  24  25  26  27  28  29  30  31
-?	8   4
+?	8   4	3	0	0	1	4	?	3
 
 January
 01  02  03  04  05

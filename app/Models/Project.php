@@ -42,4 +42,9 @@ class Project extends Model
     // {
     //     return $this->hasMany(ProjectInvite::class, 'project_id');
     // }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
 }

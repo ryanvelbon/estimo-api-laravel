@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 use App\Models\Project;
 use App\Models\ProjectMember;
+use App\Models\Task;
 
 class MasterMigration extends Migration
 {
@@ -71,20 +72,23 @@ class MasterMigration extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('title', 120);
-            $table->string('description', 1000);
+            $table->string('description', 1000)->nullable();
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('assignee');
+            $table->unsignedBigInteger('reporter_id');
+            $table->unsignedBigInteger('assignee_id')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
-            $table->unsignedTinyInteger('estimation_realistic');
-            $table->unsignedTinyInteger('estimation_optimistic');
-            $table->unsignedTinyInteger('estimation_pessimistic');
-            $table->unsignedTinyInteger('estimation_calculated');
+            $table->unsignedTinyInteger('priority')->default(Task::PRIORITY_MEDIUM);
+            $table->unsignedTinyInteger('estimation_realistic')->nullable();
+            $table->unsignedTinyInteger('estimation_optimistic')->nullable();
+            $table->unsignedTinyInteger('estimation_pessimistic')->nullable();
+            $table->unsignedTinyInteger('estimation_calculated')->nullable();
             $table->timestamps();
 
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('CASCADE');
             $table->foreign('created_by')->references('id')->on('users');
-            $table->foreign('assignee')->references('id')->on('users');
+            $table->foreign('reporter_id')->references('id')->on('users');
+            $table->foreign('assignee_id')->references('id')->on('users');
         });
     }
 

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
 
 use App\Models\Project;
 use App\Models\User;
@@ -16,7 +17,9 @@ class ProjectsTableSeeder extends Seeder
         DB::table('project_members')->delete();
         DB::table('projects')->delete();
 
-        $projects = Project::factory()->count(50)->create();
+        $projects = Project::factory()
+                        ->count(Config::get('seeding.n_projects'))
+                        ->create();
 
         foreach($projects as $project) {
 
@@ -29,7 +32,11 @@ class ProjectsTableSeeder extends Seeder
                             ->inRandomOrder()
                             ->limit(rand(1,4))
                             ->get();
-            $project->members()->attach($members, ['role' => rand(3,5)]);
+
+            $project->members()->attach($members, [
+                                    'role' => rand(
+                                        ProjectMember::ROLE_READ,
+                                        ProjectMember::ROLE_ADMIN)]);
         }
     }
 }

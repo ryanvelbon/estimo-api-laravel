@@ -151,6 +151,24 @@
 			"name": "Project",
 			"item": [
 				{
+					"name": "list all projects of current user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/projects",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "retrieve project",
 					"request": {
 						"method": "GET",
@@ -164,24 +182,6 @@
 								"api",
 								"projects",
 								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "list all projects",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/api/projects",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"projects"
 							]
 						}
 					},
@@ -324,6 +324,217 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "list all tasks for a given project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/projects/1/tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"1",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tasks/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Design Landing Page",
+									"description": "required",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n",
+									"description": "required",
+									"type": "text"
+								},
+								{
+									"key": "parent_id",
+									"value": "",
+									"description": "optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "priority",
+									"value": "5",
+									"description": "optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estimation_realistic",
+									"value": "10",
+									"description": "optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estimation_optimistic",
+									"value": "20",
+									"description": "optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estimation_pessimistic",
+									"value": "30",
+									"description": "optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estimation_calculated",
+									"value": "40",
+									"description": "optional",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/projects/1/tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"1",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit task",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Design a Responsive Landing Page",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "parent_id",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "priority",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "estimation_realistic",
+									"value": "10",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estimation_optimistic",
+									"value": "20",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estimation_pessimistic",
+									"value": "30",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "estimation_calculated",
+									"value": "100",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/tasks/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tasks/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
@@ -331,7 +542,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "1|YVN05DBiTQHIJJuDV0lL7nRi3u6EqUj3HLQyFEZL",
+				"value": "3|P4LNlFtAtqJui2g5lSx3VCRRhMGQFWx3JuAmWaR2",
 				"type": "string"
 			}
 		]

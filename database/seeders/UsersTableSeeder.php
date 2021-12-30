@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
 
 use App\Models\User;
 
@@ -13,7 +14,9 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        User::factory(10)->create();
+        User::factory()
+                ->count(Config::get('seeding.n_users'))
+                ->create();
 
         // User with id=1 will always be john@x.com. It is
         // convenient to have at least one user with a fixed
